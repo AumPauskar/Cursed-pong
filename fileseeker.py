@@ -8,4 +8,4 @@ def get_window_title():
 	import json
 	with open('config.json') as file:
 		data = json.load(file)
-		return ['window-title']
+		return data['window-title']
