@@ -1,22 +1,22 @@
 import pygame
 import fileseeker as fs
 
-# constants
+# programming constants
 
 main_window_size = fs.get_window_size()
 main_window_title = fs.get_window_title()
 
-# window
+# main window attributes
 
 pygame.init()
 screen = pygame.display.set_mode(main_window_size)
 pygame.display.set_caption(main_window_title)
 
-#background
+# background
 bg = pygame.image.load('assets/pizza.png')
 bg = pygame.transform.scale(bg, main_window_size)
 
-#players
+# players
 
 carlos_x = 100
 carlos_y = 300
@@ -28,11 +28,11 @@ charles_y = 300
 charles_delta_y = 0 
 charles_img = pygame.image.load('assets/player_16.png')
 
-#background update
+# background update
 def background_update():
 	screen.blit(bg, (1,0))
 
-#player update
+# player update
 def player_update_16(x,y):
 	screen.blit(charles_img, (x,y))
 
