@@ -1,11 +1,18 @@
+import json
+with open('config.json') as file:
+	data = json.load(file)
+
 def get_window_size():
-	import json
-	with open('config.json') as file:
-		data = json.load(file)
-		return (data['window-size-x'], data['window-size-y'])
+	return (data['window-size-x'], data['window-size-y'])
 
 def get_window_title():
-	import json
-	with open('config.json') as file:
-		data = json.load(file)
-		return data['window-title']
+	return data['window-title']
+
+def get_player_delta():
+	return data['standard-delta-player']
+
+def get_ball_delta():
+	return data['standard-delta-ball']
+
+def get_boundary_player():
+	return data['boundary-player']

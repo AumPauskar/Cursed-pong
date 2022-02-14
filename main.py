@@ -5,6 +5,9 @@ import fileseeker as fs
 
 main_window_size = fs.get_window_size()
 main_window_title = fs.get_window_title()
+delta_player = fs.get_player_delta()
+delta_ball = fs.get_ball_delta()
+boundary_player = fs.get_boundary_player()
 
 # main window attributes
 
@@ -31,8 +34,8 @@ charles_img = pygame.image.load('assets/images/player_16.png')
 #ball
 ball_x = 640
 ball_y = 360
-ball_delta_x = 2
-ball_delta_y = 2
+ball_delta_x = delta_ball
+ball_delta_y = delta_ball
 ball_img = pygame.image.load('assets/images/sbinotto.png')
 
 # background update
@@ -64,13 +67,13 @@ while while_key == True:
 
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_UP:
-				charles_delta_y = -5
+				charles_delta_y = -(delta_player)
 			if event.key == pygame.K_DOWN:
-				charles_delta_y = 5
+				charles_delta_y = (delta_player)
 			if event.key == pygame.K_w:
-				carlos_delta_y = -5
+				carlos_delta_y = -(delta_player)
 			if event.key == pygame.K_s:
-				carlos_delta_y = 5
+				carlos_delta_y = (delta_player)
 
 		if event.type == pygame.KEYUP:
 			if (event.key == pygame.K_UP) or (event.key == pygame.K_DOWN):
@@ -80,17 +83,17 @@ while while_key == True:
 
 	ball_x += ball_delta_x
 	ball_y += ball_delta_y
-	
-	if 0>charles_y:
+
+	if 0 > charles_y:
 		charles_y = 0
-	elif 464<charles_y:
-		charles_y = 464
+	elif boundary_player < charles_y:
+		charles_y = boundary_player
 	else:
 		charles_y += charles_delta_y
-	if 0>carlos_y:
+	if 0 > carlos_y:
 		carlos_y = 0
-	elif 464<carlos_y:
-		carlos_y = 464
+	elif boundary_player < carlos_y:
+		carlos_y = boundary_player
 	else:
 		carlos_y += carlos_delta_y
 	pygame.display.update()

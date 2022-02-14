@@ -2,5 +2,19 @@
 	"window-size-x": 1280,
 	"window-size-y": 720,
 
-	"window-title": "Ferrari Master🅱️lan"
+	"window-title": "Ferrari Master🅱️lan",
+
+	"standard-delta-player": 5,
+	"standard-delta-ball": 2,
+
+	"player-coord-16-x": 1000,
+	"player-coord-16-y": 300,
+
+	"player-coord-55-x": 100,
+	"player-coord-55-y": 300,
+
+	"ball-coord-x": 640,
+	"ball-coord-y": 360,
+
+	"boundary-player": 464
 }
