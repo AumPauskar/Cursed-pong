@@ -1,5 +1,6 @@
 import pygame
 import fileseeker as fs
+from pygame import mixer
 
 # programming constants
 
@@ -14,6 +15,8 @@ boundary_player = fs.get_boundary_player()
 pygame.init()
 screen = pygame.display.set_mode(main_window_size)
 pygame.display.set_caption(main_window_title)
+mixer.music.load('assets/audio/Funiculi Funicula.mp3')
+mixer.music.play()
 
 # background
 bg = pygame.image.load('assets/images/pizza.png')
