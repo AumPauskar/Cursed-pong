@@ -16,5 +16,7 @@
 	"ball-coord-x": 640,
 	"ball-coord-y": 360,
 
-	"boundary-player": 464
+	"boundary-player": 464,
+
+	"load-sleep": 1.4
 }

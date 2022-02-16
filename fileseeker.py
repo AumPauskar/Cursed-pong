@@ -16,3 +16,6 @@ def get_ball_delta():
 
 def get_boundary_player():
 	return data['boundary-player']
+
+def get_load_sleep():
+	return data['load-sleep']

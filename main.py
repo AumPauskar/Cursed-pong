@@ -1,14 +1,16 @@
 import pygame
 import fileseeker as fs
 from pygame import mixer
+import time
 
-# programming constants
+# importing all the variables from config file
 
 main_window_size = fs.get_window_size()
 main_window_title = fs.get_window_title()
 delta_player = fs.get_player_delta()
 delta_ball = fs.get_ball_delta()
 boundary_player = fs.get_boundary_player()
+load_sleep = fs.get_load_sleep()
 
 # main window attributes
 
@@ -18,11 +20,14 @@ pygame.display.set_caption(main_window_title)
 mixer.music.load('assets/audio/Funiculi Funicula.mp3')
 mixer.music.play()
 
+# load to sync the music playback
+time.sleep(load_sleep)
+
 # background
 bg = pygame.image.load('assets/images/pizza.png')
 bg = pygame.transform.scale(bg, main_window_size)
 
-# players
+# player attributes
 
 carlos_x = 100
 carlos_y = 300
@@ -34,7 +39,7 @@ charles_y = 300
 charles_delta_y = 0 
 charles_img = pygame.image.load('assets/images/player_16.png')
 
-#ball
+#ball attributes
 ball_x = 640
 ball_y = 360
 ball_delta_x = delta_ball
@@ -55,19 +60,23 @@ def player_update_55(x ,y):
 def ball_update(x, y):
 	screen.blit(ball_img, (x, y))
 
-
+# key for game loop
 while_key = True
 
+# game loop
 while while_key == True:
 	background_update()
 	player_update_16(charles_x, charles_y)	
 	player_update_55(carlos_x, carlos_y)
 	ball_update(ball_x, ball_y)
 
+	# monitors the user inputs
 	for event in pygame.event.get():
+		# function enables quitting the program
 		if event.type == pygame.QUIT:
 			while_key = False
 
+		# monitors key presses
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_UP:
 				charles_delta_y = -(delta_player)
@@ -78,15 +87,32 @@ while while_key == True:
 			if event.key == pygame.K_s:
 				carlos_delta_y = (delta_player)
 
+		# monitors key releases
 		if event.type == pygame.KEYUP:
 			if (event.key == pygame.K_UP) or (event.key == pygame.K_DOWN):
 				charles_delta_y = 0
 			if (event.key == pygame.K_w) or (event.key == pygame.K_s):
 				carlos_delta_y = 0
 
+	# delta gives the speed of ball movement
 	ball_x += ball_delta_x
 	ball_y += ball_delta_y
 
+	# collission detection
+	if (ball_x == carlos_x+64) and (carlos_y <= ball_y <= carlos_y+224):
+		ball_delta_x = -(ball_delta_x)
+
+	if (ball_x == charles_x-32) and (charles_y <= ball_y <= charles_y+224):
+		ball_delta_x = -(ball_delta_x)
+
+	if (ball_y == (main_window_size[1])-32) or (ball_y == (0)):
+		ball_delta_y = -(ball_delta_y)
+
+	# game over mechanic
+	if ball_x > 1280 or ball_x < -32:
+		while_key = False
+
+	# boundary for the paddles
 	if 0 > charles_y:
 		charles_y = 0
 	elif boundary_player < charles_y:
@@ -99,4 +125,6 @@ while while_key == True:
 		carlos_y = boundary_player
 	else:
 		carlos_y += carlos_delta_y
+
+	# display update
 	pygame.display.update()
