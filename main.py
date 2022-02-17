@@ -24,7 +24,7 @@ mixer.music.play()
 time.sleep(load_sleep)
 
 # background
-bg = pygame.image.load('assets/images/pizza.png')
+bg = pygame.image.load('assets/images/ferrari_tractor.png')
 bg = pygame.transform.scale(bg, main_window_size)
 
 # player attributes
