@@ -5,7 +5,7 @@
 	"window-title": "Ferrari MasterBlan",
 
 	"standard-delta-player": 5,
-	"standard-delta-ball": 2,
+	"standard-delta-ball": 4,
 
 	"player-coord-16-x": 1000,
 	"player-coord-16-y": 300,
@@ -16,5 +16,7 @@
 	"ball-coord-x": 640,
 	"ball-coord-y": 360,
 
-	"boundary-player": 464
+	"boundary-player": 464,
+
+	"load-sleep": 1.4
 }
