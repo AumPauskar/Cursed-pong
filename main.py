@@ -50,6 +50,12 @@ ball_img = pygame.image.load('assets/images/sbinotto.png')
 def background_update():
 	screen.blit(bg, (1,0))
 
+s55=s16=0
+font_show = pygame.font.Font('freesansbold.ttf', 32)
+def show_font(x, y):
+	font_display = font_show.render('CARLOS: ' + str(s55) + ' CHARLES: ' + str(s16), True, (255, 255,255))
+	screen.blit(font_display, (0,0))
+
 # player update
 def player_update_16(x, y):
 	screen.blit(charles_img, (x, y))
@@ -69,6 +75,7 @@ while while_key == True:
 	player_update_16(charles_x, charles_y)	
 	player_update_55(carlos_x, carlos_y)
 	ball_update(ball_x, ball_y)
+	show_font(s55, s16)
 
 	# monitors the user inputs
 	for event in pygame.event.get():
@@ -101,17 +108,25 @@ while while_key == True:
 	# collission detection
 	if (ball_x == carlos_x+64) and (carlos_y <= ball_y <= carlos_y+224):
 		ball_delta_x = -(ball_delta_x)
+	
 
 	if (ball_x == charles_x-32) and (charles_y <= ball_y <= charles_y+224):
 		ball_delta_x = -(ball_delta_x)
+	
 
 	if (ball_y == (main_window_size[1])-32) or (ball_y == (0)):
 		ball_delta_y = -(ball_delta_y)
 
-	# game over mechanic
-	if ball_x > 1280 or ball_x < -32:
-		while_key = False
+	# scoring mechanism
+	if ball_x > 1280:
+		s55 += 1
+		ball_x = 640
+		ball_y = 340
 
+	if ball_x < -32:
+		s16 += 1
+		ball_x = 640
+		ball_y = 340
 	# boundary for the paddles
 	if 0 > charles_y:
 		charles_y = 0
@@ -128,3 +143,5 @@ while while_key == True:
 
 	# display update
 	pygame.display.update()
+
+# henlo can you hear me?
