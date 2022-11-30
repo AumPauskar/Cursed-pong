@@ -3,7 +3,7 @@ import fileseeker as fs
 from pygame import mixer
 import time
 
-# importing all the variables from config file
+# importing all the variables from conpfig file
 
 main_window_size = fs.get_window_size()
 main_window_title = fs.get_window_title()
